@@ -1,0 +1,60 @@
+<?php
+$helperPermission = Mage::helper('webpos/permission');
+$webposShowContent = ($helperPermission->getCurrentUser() && !$helperPermission->isShowChoosePosLocation())?true:false;
+?>
+
+<!--end edit setup livechat when customer login -->
+<a href="#" class="open-pannel"><img src="<?php echo $this->getSkinUrl('magestore/tutorial/images/tutorial-icon.png'); ?>" /><span>Tutorial<br/>Menu</span></a>
+<div class="tutorials-panel">
+	<div class="tutorials-panel-default">
+		<div class="tutorials-panel-header">
+			<strong class="title">Tutorial for WebPos</strong>
+			<a href="#" class="clone-pannel"><span>Close panel</span></a>
+		</div>
+
+		<div class="tutorials-panel-content">
+			<?php
+			if($webposShowContent){
+				?>
+				<ul class="list">
+					<li><a href="#" id="intro-webpos2" class="intro">Making Order</a></li>
+					<li><a href="#" id="intro-webpos3" class="intro">Refunding Order </a></li>
+					<li class="session-mng"><a href="#" id="intro-webpos1" class="intro">Session Management</a></li>
+					<li><a href="http://demo-omni.magestore.com/m1/starter/01/index.php/admin/dashboard/" id="intro-webpos4">Back to main Tutorial</a></li>
+				</ul>
+				<?php
+			}
+			else{
+				?>
+				<div class="account-list">
+					<h3 class="title-box">Get access to our WebPOS demo by using this account:</h3>
+					<ul class="list-account">
+						<li>Username: staff1</li>
+						<li>Password: staff123</li>
+					</ul>
+				</div>
+				<?php
+			}
+			?>
+		</div>
+		<div class="tutorials-panel-bottom">
+			<div class="detail">
+				<p class="title">Feel Free to contact if you have any questions about the solution</p>
+				<div class="actions">
+					<a href="javascript:void(0)" onclick="$zopim.livechat.window.show(); ga('send', {'hitType': 'event', 'eventCategory': 'Demo OMC starter', 'eventAction': ' WebPos', 'eventLabel': 'Contact-us'});" class="btn">Talk to Sales</a>
+					<a target="_blank" onclick="ga('send', {'hitType': 'event', 'eventCategory': 'Demo OMC starter', 'eventAction': ' WebPos', 'eventLabel': 'Buy-now'});"  href="//magestore.com/pricing?starter" class="btn btn-orange">Buy Now</a>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+<?php echo $this->getLayout()->createBlock('core/template')->setTemplate('tutorial/requirejs.phtml')->toHtml();?>
+<script type="text/javascript">
+require([
+        'jquery',
+        'tutorial/intro',
+        'tutorial/main',
+        'tutorial/zopim'
+    ], function ($) {})    
+</script>
